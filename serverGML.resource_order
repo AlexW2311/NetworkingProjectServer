@@ -18,5 +18,7 @@
   ],
   "ResourceOrderSettings":[
     {"name":"obj_player","order":1,"path":"objects/obj_player/obj_player.yy",},
+    {"name":"obj_slave","order":2,"path":"objects/obj_slave/obj_slave.yy",},
+    {"name":"Sprite_slave","order":1,"path":"sprites/Sprite_slave/Sprite_slave.yy",},
   ],
 }

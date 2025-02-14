@@ -3,21 +3,16 @@ max_client = 20;
 playerSpawnX = 100;
 playerSpawnY = 100;
 
-enum network {connect, move}
+enum network {connect, player_joined, move}
 
 
 
+server = network_create_server(network_socket_tcp, port, max_client);                  // Create TCP server
 
-
-
-
-
-
-server = network_create_server(network_socket_tcp, port, max_client);
 while (server < 0 && port < 65535)
 {
     port++
-    server = network_create_server(network_socket_tcp, port, 32);
+    server = network_create_server(network_socket_tcp, port, max_client);
 }
 if (server >= 0) {
     show_debug_message("Server started successfully on port " + string(port));
@@ -25,9 +20,9 @@ if (server >= 0) {
     show_debug_message("Failed to start server on port " + string(port));
 }
 
-server_buffer = buffer_create(1024,buffer_grow, 1);
+server_buffer = buffer_create(1024,buffer_grow, 1);                                    //Create the server buffer
 
-//data for client
-socket_list = ds_list_create();
 
-socket_to_InstanceId = ds_map_create();
+socket_list = ds_list_create();                                                        //Data for client
+
+socket_to_InstanceId = ds_map_create();                                                

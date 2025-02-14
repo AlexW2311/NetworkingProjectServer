@@ -15,7 +15,16 @@ function received_packet(_buffer,_socket){
         _player.x = moveX;
         _player.y = moveY;
         
-        
+        for(var i = 0; i < ds_list_size(socket_list); i++){
+            var _sock = ds_list_find_value(socket_list, i)
+            
+            buffer_seek(server_buffer, buffer_seek_start, 0);
+            buffer_write(server_buffer, buffer_u8, network.move);
+            buffer_write(server_buffer, buffer_u8, _socket);
+            buffer_write(server_buffer, buffer_u16, moveX);
+            buffer_write(server_buffer, buffer_u16, moveY);
+            //network_send_packet(_sock, server_buffer, buffer_tell(server_buffer));
+        }
 		
 		//find start of server buffer, write some shit to it
 		buffer_seek(server_buffer,buffer_seek_start,0);
