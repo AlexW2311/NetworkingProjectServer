@@ -23,18 +23,10 @@ function received_packet(_buffer,_socket){
             buffer_write(server_buffer, buffer_u8, _socket);
             buffer_write(server_buffer, buffer_u16, moveX);
             buffer_write(server_buffer, buffer_u16, moveY);
-            //network_send_packet(_sock, server_buffer, buffer_tell(server_buffer));
+            network_send_packet(_sock, server_buffer, buffer_tell(server_buffer));
         }
 		
-		//find start of server buffer, write some shit to it
-		buffer_seek(server_buffer,buffer_seek_start,0);
-		buffer_write(server_buffer, buffer_u8, network.move);
-		buffer_write(server_buffer, buffer_u16, moveX);
-		buffer_write(server_buffer, buffer_u16, moveY);
-		
-		
-		//send that shit to the client socket suppplied 
-		network_send_packet(_socket, server_buffer, buffer_tell(server_buffer));
+
 		break;
 	}
 	
