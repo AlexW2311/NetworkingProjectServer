@@ -64,7 +64,18 @@ if (ds_map_exists(async_load, "type")) {                    //Creates a DS map "
             {
                 ds_list_delete(socket_list, ds_list_find_index(socket_list, socket));
             }
+        
+        
+            for (var i = 0; i < ds_list_size(socket_list); i++){
+                var _sock = ds_list_find_value(socket_list, i);
+                buffer_seek(server_buffer, buffer_seek_start, 0);
+                buffer_write(server_buffer, buffer_u8, network.player_disconnect);
+                buffer_write(server_buffer,buffer_u8, socket);
+                network_send_packet(_sock, server_buffer,buffer_tell(server_buffer));
+            }
             with(ds_map_find_value(socket_to_InstanceId, socket)){instance_destroy();}
+                ds_map_delete(socket_to_InstanceId, socket); //Clean map
+    
             show_debug_message("Client Disconnected: Socket " + string(socket)); // will this throw an error if socket is desotryed? Be on the look out
             break;
 
