@@ -6,6 +6,14 @@ function received_packet(_buffer,_socket){
 	
 	switch(msgId) //case from item
 	{
+        
+        case network.established:
+            var _username = buffer_read(_buffer, buffer_string);
+            networkPlayerConnect(_socket,_username);
+        
+            break;
+        
+        
 		case network.move: 
 		//read in data
 		var moveX = buffer_read(_buffer, buffer_u16);
