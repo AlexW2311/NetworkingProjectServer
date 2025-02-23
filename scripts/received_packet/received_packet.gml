@@ -39,8 +39,17 @@ function received_packet(_buffer,_socket){
         
         
         case network.chat:
-            var _chat = buffer_read(_buffer, buffer_string);
-            show_message(_chat);
+            var _chat = buffer_read(_buffer, buffer_string); //Reads chat input from a user
+            var player = ds_map_find_value(socket_to_InstanceId, _socket) //Get instance ID of client 
+            _chat = player.username + ": "+_chat;  // Adds Client name to chat string
+        for(var i = 0; i < ds_list_size(socket_list); i++){  //sends chat input to all other clients
+                    var _sock = ds_list_find_value(socket_list, i)
+                    
+                    buffer_seek(server_buffer, buffer_seek_start, 0);
+                    buffer_write(server_buffer, buffer_u8, network.chat);
+                    buffer_write(server_buffer, buffer_string, _chat);
+                    network_send_packet(_sock, server_buffer, buffer_tell(server_buffer));
+        }
         break;
 	}
 	
