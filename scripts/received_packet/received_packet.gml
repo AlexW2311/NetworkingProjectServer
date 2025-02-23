@@ -36,6 +36,12 @@ function received_packet(_buffer,_socket){
 		
 
 		break;
+        
+        
+        case network.chat:
+            var _chat = buffer_read(_buffer, buffer_string);
+            show_message(_chat);
+        break;
 	}
 	
 	

@@ -3,7 +3,7 @@ max_client = 20;
 playerSpawnX = 100;
 playerSpawnY = 100;
 
-enum network {established,connect,  player_joined, player_disconnect, move}
+enum network {established,connect,  player_joined, player_disconnect, move, chat}
 
 
 

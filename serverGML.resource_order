@@ -17,6 +17,7 @@
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings":[
+    {"name":"con_chatHandler","order":3,"path":"objects/con_chatHandler/con_chatHandler.yy",},
     {"name":"obj_player","order":1,"path":"objects/obj_player/obj_player.yy",},
     {"name":"obj_slave","order":2,"path":"objects/obj_slave/obj_slave.yy",},
     {"name":"networkPlayerConnect","order":1,"path":"scripts/networkPlayerConnect/networkPlayerConnect.yy",},
